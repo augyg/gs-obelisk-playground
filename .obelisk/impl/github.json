@@ -1,8 +1,8 @@
 {
   "owner": "obsidiansystems",
   "repo": "obelisk",
-  "branch": "master",
+  "branch": "test-ob-deploy-galen",
   "private": false,
-  "rev": "e3ec75f6988eed47189dd20f8c8514748b33ea81",
-  "sha256": "0sdlcyzdx9nyql5vmpjydhzsakixc8y050v8m2rz87l2rmhkqnw9"
+  "rev": "f0acb10c066a29d0ef14cd27ddcd43783b42b330",
+  "sha256": "0mb3v8scn3gkcj6gidp1bnxa7c1ljbgbl90rqw2g4lfsxvhc2xkg"
 }
