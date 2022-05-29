@@ -7,3 +7,5 @@ Things that should never be transmitted to the frontend belong in backend/ (e.g.
 Frontend-only configuration belongs in frontend/.
 
 Shared configuration files (e.g., the route config) belong in common/
+
+See executable-configs Obelisk package for how to access these in Haskell

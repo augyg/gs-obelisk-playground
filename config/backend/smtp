@@ -1,0 +1,9 @@
+{ "_emailConfig_emailAuth":
+    { "_emailAuth_authType": "LOGIN"
+    , "_emailAuth_username": "a81c4a70beec16"
+    , "_emailAuth_password": "Attempt 1"
+    }
+, "_emailConfig_hostname": "smtp.mailtrap.io"
+, "_emailConfig_port": 2525
+, "_emailConfig_protocol": "SMTPProtocol_Plain"
+}
