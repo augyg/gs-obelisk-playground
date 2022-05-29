@@ -1,6 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE GADTs #-}
-
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Backend where
 
@@ -19,6 +20,11 @@ import qualified Obelisk.ExecutableConfig.Lookup as Cfg
 import Data.Aeson
 import qualified Control.Monad.Fail as Fail
 import Data.Text as T
+import Data.ByteString as BS
+import Data.Map as Map
+import System.Directory
+import System.FilePath.Posix
+import Control.Monad
 
 -- | Get and parse a json configuration
 getJsonConfigBase :: (HasConfigs m, FromJSON a) => Text -> m (Maybe (Either String a))
@@ -32,9 +38,24 @@ getJsonConfig k = getJsonConfigBase k >>= \case
   Just (Right val) -> pure val
 
 
+getConfigsFromDirectory :: FilePath -> IO (Map Text ByteString)
+getConfigsFromDirectory base = doesDirectoryExist base >>= \case
+  True -> do
+    ps <- listDirectory base
+    fmap mconcat $ forM ps $ \p -> do
+      subdirConfigs <- getConfigsFromDirectory $ base </> p
+      pure $ Map.mapKeys (T.pack . (p </>) . T.unpack) subdirConfigs
+  False -> doesFileExist base >>= \case
+    True -> Map.singleton "" <$> BS.readFile base
+    False -> pure mempty
+
 backend :: Backend BackendRoute FrontendRoute
 backend = Backend
-  { _backend_run = \serve -> serve $ const $ return ()
+  { _backend_run = \serve -> serve $ \case
+      _ -> do
+        x <- liftIO $ getConfigsFromDirectory "config/backend"
+        liftIO $ print $ Map.lookup "smtp" x
+        return ()
     -- \serve -> Cfg.getConfigs >>= flip runConfigsT $ do
     --   configs <- getConfigs
     --   smtpConfig <- getJsonConfig "backend/smtp"
