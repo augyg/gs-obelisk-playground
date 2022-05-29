@@ -16,6 +16,8 @@ library
                , containers
                , bytestring
                , aeson
+               , text
+               , obelisk-executable-config-lookup
   exposed-modules:
     Backend
   ghc-options: -Wall -Wredundant-constraints -Wincomplete-uni-patterns -Wincomplete-record-updates -O -fno-show-valid-hole-fits
