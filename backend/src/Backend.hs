@@ -53,9 +53,15 @@ backend :: Backend BackendRoute FrontendRoute
 backend = Backend
   { _backend_run = \serve -> serve $ \case
       _ -> do
+        liftIO $ f =<< Prelude.readFile "config/common/fakeConfig" 
         x <- liftIO $ getConfigsFromDirectory "config/backend"
-        liftIO $ print $ Map.lookup "smtp" x
+        liftIO $ print $ Map.lookup "fakeConfig" x
         return ()
+
+        where
+          f = \case
+            "" -> print "FAILUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUURE"
+            something -> print something 
     -- \serve -> Cfg.getConfigs >>= flip runConfigsT $ do
     --   configs <- getConfigs
     --   smtpConfig <- getJsonConfig "backend/smtp"
