@@ -53,6 +53,7 @@ backend :: Backend BackendRoute FrontendRoute
 backend = Backend
   { _backend_run = \serve -> serve $ \case
       _ -> do
+        liftIO $ print "heyyyyyyy"
         liftIO $ f =<< Prelude.readFile "config/common/fakeConfig" 
         x <- liftIO $ getConfigsFromDirectory "config/backend"
         liftIO $ print $ Map.lookup "fakeConfig" x
