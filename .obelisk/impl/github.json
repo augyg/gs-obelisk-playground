@@ -1,8 +1,8 @@
 {
   "owner": "obsidiansystems",
   "repo": "obelisk",
-  "branch": "develop",
+  "branch": "gs-updating-configs",
   "private": false,
-  "rev": "70524d00e722cd1f65edd6d75d004c40ad6545a2",
-  "sha256": "0gwm84nn1d31rrggvg4jph2vb5qlnc011pc1smywvnyx15z88jrs"
+  "rev": "5d2786b51835a671166944356c9cd356435bf78e",
+  "sha256": "14jklcf1wl8qk8smys6gbbxl60p2dq6mqhwq7z9rj2j1dm60hmi5"
 }
