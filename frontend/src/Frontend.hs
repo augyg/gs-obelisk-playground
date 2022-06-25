@@ -28,6 +28,7 @@ frontend = Frontend
       el "title" $ text "Obelisk Minimal Example"
       elAttr "link" ("href" =: $(static "main.css") <> "type" =: "text/css" <> "rel" =: "stylesheet") blank
   , _frontend_body = do
+      el "div" $ text "hello"
       el "h1" $ text "Welcome to Obelisk!"
       el "p" $ text $ T.pack commonStuff
       
